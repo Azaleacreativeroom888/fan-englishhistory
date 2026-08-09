@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | ALBION CHRONICLE</title>
+<meta name="description" content="イギリス史をめぐる日々の記録。調査の断片や、ちょっとした発見を綴った日記です。">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Serif+JP:wght@400;500;600;700&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --stone-950:#dddee1;
+    --stone-900:#d3d4d8;
+    --stone-850:#c7c8cd;
+    --stone-800:#bcbec4;
+    --stone-700:#a5a7ae;
+    --stone-600:#87898f;
+    --stone-400:#55575d;
+    --stone-300:#1b1c1f;
+    --stone-100:#0d0e10;
+    --forest-700:#2c4d38;
+    --forest-600:#3c6b4a;
+    --forest-500:#4c8058;
+    --forest-400:#6b9c78;
+    --crimson-700:#5e1c25;
+    --crimson-600:#7a2530;
+    --crimson-500:#93313d;
+    --crimson-400:#a8434f;
+    --gold-400:#8f6a2e;
+    --gold-300:#a67d3a;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--stone-950);
+    color:var(--stone-300);
+    font-family:"Noto Serif JP", "EB Garamond", serif;
+    line-height:1.85;
+    font-size:16px;
+    overflow-x:hidden;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(76,128,88,0.06), transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(147,49,61,0.06), transparent 40%);
+    z-index:0;
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  .eyebrow{
+    font-family:"Cinzel", serif;
+    letter-spacing:0.28em;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    color:var(--gold-400);
+  }
+
+  h1,h2,h3{
+    font-family:"Noto Serif JP", serif;
+    font-weight:700;
+    color:var(--stone-100);
+    letter-spacing:0.02em;
+  }
+
+  .en{
+    font-family:"Cinzel", serif;
+    letter-spacing:0.12em;
+  }
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(221,222,225,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--stone-700);
+  }
+  nav{
+    max-width:1180px;
+    margin:0 auto;
+    padding:18px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    display:flex; align-items:baseline; gap:10px;
+  }
+  .brand .mark{
+    font-family:"Cinzel", serif;
+    font-weight:700;
+    font-size:1.15rem;
+    letter-spacing:0.18em;
+    color:var(--stone-100);
+  }
+  .brand .mark span{color:var(--forest-400);}
+  .brand .sub{
+    font-size:0.7rem;
+    color:var(--stone-400);
+    letter-spacing:0.08em;
+  }
+  .navlinks{display:flex; gap:34px; font-size:0.88rem;}
+  .navlinks a{
+    color:var(--stone-300);
+    position:relative;
+    padding-bottom:4px;
+    transition:color 0.25s ease;
+  }
+  .navlinks a::after{
+    content:"";
+    position:absolute; left:0; bottom:0;
+    width:0; height:1px;
+    background:linear-gradient(90deg, var(--forest-500), var(--crimson-500));
+    transition:width 0.3s ease;
+  }
+  .navlinks a:hover{color:var(--stone-100);}
+  .navlinks a:hover::after{width:100%;}
+  .navlinks a.active{color:var(--gold-300);}
+
+  /* ---------- Page hero ---------- */
+  .page-hero{
+    max-width:1180px;
+    margin:0 auto;
+    padding:88px 28px 60px;
+    position:relative;
+    z-index:1;
+  }
+  .page-hero .hero-crest{
+    display:flex; align-items:center; gap:16px;
+    margin-bottom:22px;
+  }
+  .page-hero .hero-crest .line{
+    width:44px; height:1px;
+    background:linear-gradient(90deg, var(--forest-500), transparent);
+  }
+  .page-hero h1{
+    font-size:clamp(1.9rem, 4vw, 2.6rem);
+  }
+  .page-hero p.lead{
+    margin-top:18px;
+    max-width:52ch;
+    font-size:1rem;
+    color:var(--stone-400);
+  }
+
+  /* ---------- Shield divider ---------- */
+  .shield-rule{
+    display:flex; align-items:center; justify-content:center;
+    gap:14px;
+    margin:0 auto;
+    max-width:1180px;
+    padding:0 28px;
+  }
+  .shield-rule .bar{flex:1; height:1px; background:var(--stone-700);}
+  .shield-rule .shield{
+    width:18px; height:22px;
+    clip-path:polygon(0 0,100% 0,100% 55%,50% 100%,0 55%);
+    background:linear-gradient(160deg, var(--forest-600), var(--crimson-600));
+  }
+
+  main{
+    max-width:1180px;
+    margin:0 auto;
+    padding:64px 28px 40px;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ---------- Diary list ---------- */
+  .diary-list{
+    max-width:680px;
+    margin:0 auto;
+  }
+  .entry{
+    padding:38px 0;
+    border-bottom:1px solid var(--stone-700);
+  }
+  .entry:first-child{padding-top:0;}
+  .entry:last-child{border-bottom:none;}
+  .entry-date{
+    font-family:"Cinzel", serif;
+    font-size:0.75rem;
+    letter-spacing:0.12em;
+    color:var(--gold-400);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .entry-date .dot{
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--forest-500);
+  }
+  .entry:nth-child(even) .entry-date .dot{background:var(--crimson-500);}
+  .entry-text{
+    font-size:0.98rem;
+    color:var(--stone-300);
+    max-width:64ch;
+  }
+
+  /* ---------- Footer / contact ---------- */
+  footer{
+    border-top:1px solid var(--stone-700);
+    background:var(--stone-900);
+    position:relative;
+    z-index:1;
+  }
+  .footer-inner{
+    max-width:1180px;
+    margin:0 auto;
+    padding:80px 28px 40px;
+  }
+  .contact-block{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    margin-bottom:64px;
+  }
+  .contact-block h2{font-size:1.4rem; margin-bottom:14px;}
+  .contact-block p{font-size:0.9rem; color:var(--stone-400); margin-bottom:26px;}
+  form{display:flex; flex-direction:column; gap:14px;}
+  input, textarea{
+    background:var(--stone-850);
+    border:1px solid var(--stone-700);
+    color:var(--stone-100);
+    padding:12px 14px;
+    font-family:"EB Garamond", "Noto Serif JP", serif;
+    font-size:0.92rem;
+  }
+  input:focus, textarea:focus{
+    outline:none;
+    border-color:var(--forest-500);
+  }
+  textarea{resize:vertical; min-height:110px;}
+  form button{
+    align-self:flex-start;
+    margin-top:6px;
+    padding:12px 32px;
+    background:var(--forest-600);
+    border:1px solid var(--forest-500);
+    color:#fff;
+    font-family:"Cinzel", serif;
+    font-size:0.75rem;
+    letter-spacing:0.12em;
+    cursor:pointer;
+    transition:background 0.3s ease;
+  }
+  form button:hover{background:var(--crimson-600); border-color:var(--crimson-500);}
+
+  .footer-links{
+    display:flex; flex-wrap:wrap; gap:10px 28px;
+    font-size:0.85rem;
+    padding:32px 0;
+    border-top:1px solid var(--stone-700);
+    color:var(--stone-400);
+  }
+  .footer-links a:hover{color:var(--gold-300);}
+
+  .ai-notice{
+    font-size:0.72rem;
+    color:var(--stone-600);
+    line-height:1.9;
+    padding-top:24px;
+    border-top:1px solid var(--stone-700);
+  }
+  .ai-notice p{margin-bottom:6px;}
+
+  .copyright{
+    margin-top:24px;
+    font-size:0.75rem;
+    color:var(--stone-600);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  @media (max-width:760px){
+    .navlinks{gap:20px; font-size:0.8rem;}
+    .contact-block{grid-template-columns:1fr; gap:36px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand">
+      <span class="mark">ALBION <span>CHRONICLE</span></span>
+      <span class="sub">石と森の年代記</span>
+    </div>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <div class="hero-crest">
+    <span class="line"></span>
+    <span class="eyebrow">Diary</span>
+  </div>
+  <h1>日々の記録</h1>
+  <p class="lead">調査の途中で見つけたこと、ふと考えたこと。日付と一緒に、そのまま書き留めています。</p>
+</div>
+
+<div class="shield-rule"><span class="bar"></span><span class="shield"></span><span class="bar"></span></div>
+
+<main>
+  <div class="diary-list">
+
+    <div class="entry">
+      <div class="entry-date"><span class="dot"></span>2026.08.09</div>
+      <p class="entry-text">このサイトを立ち上げた。灰色の石壁に、深緑と深紅のアクセント——Game of Thronesの重厚さと、アーサー王伝説の気配、両方を纏わせたくて何度も配色を試した末に、ようやく納得のいく組み合わせに落ち着いた気がする。</p>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date"><span class="dot"></span>2026.08.02</div>
+      <p class="entry-text">薔薇戦争について調べ直している。ランカスター家とヨーク家、白薔薇と赤薔薇の対立は、単純な善悪では語れない複雑さがあって面白い。いつか物語のネタにできたらいいなと思う。</p>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date"><span class="dot"></span>2026.07.28</div>
+      <p class="entry-text">アーサー王伝説は版によって円卓の騎士の顔ぶれが微妙に違うことに気づいた。マロリーの『アーサー王の死』を読み返し中。伝説が語り継がれるうちに少しずつ形を変えていく過程そのものが興味深い。</p>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date"><span class="dot"></span>2026.07.15</div>
+      <p class="entry-text">テューダー朝の宮廷画を眺めていたら、当時の衣装の細部が気になって手が止まらなくなった。資料集めが止まらない夜。</p>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+
+    <div class="contact-block">
+      <div>
+        <span class="eyebrow">Get in Touch</span>
+        <h2 style="margin-top:12px;">お問い合わせ</h2>
+        <p>感想や史料に関する情報など、お気軽にご連絡ください。</p>
+      </div>
+      <form action="https://formspree.io/f/maqvpvoz" method="POST">
+        <input type="text" name="name" placeholder="お名前" required>
+        <input type="email" name="email" placeholder="メールアドレス" required>
+        <textarea name="message" placeholder="メッセージ" required></textarea>
+        <button type="submit">送信する</button>
+      </form>
+    </div>
+
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="blog.html">Blog</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="https://azaleacreativeroom888.github.io/">Azalea Creative Room</a>
+    </div>
+
+    <div class="ai-notice">
+      <p>本サイトのコンテンツ（文章・画像）のAI学習への利用を禁止します。All content on this site (text and images) may not be used for AI training purposes without permission.</p>
+    </div>
+
+    <div class="copyright">
+      <span>© 2026 ALBION CHRONICLE — Azalea Creative Room</span>
+      <span class="en" style="color:var(--stone-700);">Stone and Legend</span>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
