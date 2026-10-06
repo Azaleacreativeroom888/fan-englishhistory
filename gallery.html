@@ -231,6 +231,67 @@
     border:1px dashed var(--stone-700);
   }
 
+  /* ---------- Featured report link box ---------- */
+  .report-link{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+    margin-top:56px;
+    padding:38px 40px;
+    border:1px solid var(--stone-700);
+    background:linear-gradient(120deg, var(--forest-700), var(--stone-800) 55%, var(--crimson-700));
+    position:relative;
+    overflow:hidden;
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .report-link:hover{
+    transform:translateY(-3px);
+    box-shadow:0 16px 30px rgba(20,20,20,0.16);
+  }
+  .report-link::before{
+    content:"";
+    position:absolute;
+    top:0; left:0;
+    width:20px; height:24px;
+    clip-path:polygon(0 0,100% 0,100% 58%,50% 100%,0 58%);
+    background:var(--gold-400);
+    opacity:0.85;
+  }
+  .report-link .text .tag{
+    font-family:"Cinzel", serif;
+    font-size:0.68rem;
+    letter-spacing:0.16em;
+    color:var(--gold-300);
+    display:block;
+    margin-bottom:10px;
+  }
+  .report-link .text h3{
+    color:#f4f4f2;
+    font-size:1.3rem;
+    margin-bottom:8px;
+  }
+  .report-link .text p{
+    color:#e4e5e3;
+    font-size:0.88rem;
+    max-width:48ch;
+  }
+  .report-link .arrow{
+    font-family:"Cinzel", serif;
+    font-size:0.78rem;
+    letter-spacing:0.12em;
+    color:#f4f4f2;
+    border:1px solid rgba(244,244,242,0.5);
+    padding:11px 24px;
+    white-space:nowrap;
+    transition:border-color 0.3s ease, background 0.3s ease;
+  }
+  .report-link:hover .arrow{
+    border-color:var(--gold-300);
+    background:rgba(244,244,242,0.08);
+  }
+
   /* ---------- Footer / contact ---------- */
   footer{
     border-top:1px solid var(--stone-700);
@@ -408,6 +469,15 @@
     </div>
 
   </div>
+
+  <a class="report-link" href="report1.html">
+    <div class="text">
+      <span class="tag">Feature Report</span>
+      <h3>イギリス人物図鑑</h3>
+      <p>各時代を彩った人物たちをまとめた特集ページです。王侯貴族から伝説の騎士まで、人物を軸にイギリス史を辿ります。</p>
+    </div>
+    <span class="arrow">READ MORE →</span>
+  </a>
 
 </main>
 
